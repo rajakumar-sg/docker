@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  proxy:
+    image: nginx-proxy
+    build:
+      context: ./nginx-proxy
+    ports:
+      - "8080:80"
+    networks:
+      - nginx-proxy
+      - nginx-web
+
+  nginx-web:
+    image: nginx-web
+    build:
+      context: nginx-web
+    networks:
+      - nginx-web
+
+networks:
+  nginx-proxy:
+  nginx-web:
